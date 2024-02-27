@@ -1,7 +1,7 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from .database import SessionLocal
+from .database import get_db
 from .models import Url
 from .utils import generate_shortcode
 
@@ -12,7 +12,7 @@ class ShortenRequest(BaseModel):
     shortcode: str = None
 
 @router.post("/shorten", status_code=status.HTTP_201_CREATED)
-def shorten_url(request: ShortenRequest, db: Session= SessionLocal()):
+def shorten_url(request: ShortenRequest, db: Session= Depends(get_db)):
     if not request.url:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Url not present")
     with db.begin():

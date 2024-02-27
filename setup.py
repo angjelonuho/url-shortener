@@ -12,5 +12,6 @@ setup(
         'pytest-asyncio',
         'requests',
         'psycopg2-binary',
+        'SQLAlchemy-Utils',
     ],
 )
