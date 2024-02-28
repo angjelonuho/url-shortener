@@ -10,3 +10,8 @@ def test_stats_endpoint(setup_database):
     assert "created" in response.json()
     assert "lastRedirect" in response.json()
     assert "redirectCount" in response.json()
+
+def test_get_shortcode_stats_not_found(setup_database):
+    response = client.get("/non_existent_shortcode/stats")
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Shortcode not found"
