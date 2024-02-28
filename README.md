@@ -8,7 +8,7 @@ git clone https://github.com/angjelonuho/url-shortener.git
 cd url-shortener || exit
 ```
 
-2. Create a virtual environment and activate it
+2. Create a virtual environment and activate it (Optional)
 ```sh
 python -m venv env
 ```
