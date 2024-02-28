@@ -1,9 +1,9 @@
 from fastapi.testclient import TestClient
-from ..app.shorten import router
+from main import app
 
-client = TestClient(router)
+client = TestClient(app)
 
-def test_shorten_url():
-    response = client.post("/shorten", json={"url": "https://www.example.com"})
+def test_shorten_endpoint():
+    response = client.post("/shorten", json={"url": "http://example.com",  "shortcode": ""})
     assert response.status_code == 201
     assert "shortcode" in response.json()
